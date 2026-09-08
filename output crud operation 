@@ -1,0 +1,468 @@
+SQL> CREATE TABLE CUSTOMER (
+  2  Customer_ID INT PRIMARY KEY,
+  3  Customer_Name VARCHAR(100) NOT NULL,
+  4  Email VARCHAR(100) UNIQUE NOT NULL,
+  5  Phone_Number VARCHAR(15) NOT NULL,
+  6  Password VARCHAR(100) NOT NULL,
+  7  Address VARCHAR(255) NOT NULL
+  8  );
+
+Table created.
+
+SQL> INSERT INTO CUSTOMER VALUES
+  2  (1001, 'Ananya Sharma', 'ananya@gmail.com', '9876543210',
+  3  'Ananya@123', 'Chennai');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES
+  2  (1002, 'Priya Nair', 'priya@gmail.com', '9876543211',
+  3  'Priya@123', 'Kochi');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES
+  2  (1003, 'Kavya Reddy', 'kavya@gmail.com', '9876543212',
+  3  'Kavya@123', 'Hyderabad');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES
+  2  (1004, 'Divya Singh', 'divya@gmail.com', '9876543213',
+  3  'Divya@123', 'Bengaluru');
+
+1 row created.
+
+SQL> INSERT INTO CUSTOMER VALUES
+  2  (1005, 'Meera Patel', 'meera@gmail.com', '9876543214',
+  3  'Meera@123', 'Ahmedabad');
+
+1 row created.
+
+SQL> SELECT * FROM CUSTOMER;
+
+CUSTOMER_ID  CUSTOMER_NAME       EMAIL
+-----------  ------------------  -----------------------
+1001         Ananya Sharma       ananya@gmail.com
+1002         Priya Nair          priya@gmail.com
+1003         Kavya Reddy         kavya@gmail.com
+1004         Divya Singh         divya@gmail.com
+1005         Meera Patel         meera@gmail.com
+
+
+SQL> SELECT CUSTOMER_NAME FROM CUSTOMER;
+
+CUSTOMER_NAME
+------------------
+Ananya Sharma
+Priya Nair
+Kavya Reddy
+Divya Singh
+Meera Patel
+
+
+SQL> SELECT CUSTOMER_NAME, EMAIL FROM CUSTOMER;
+
+CUSTOMER_NAME       EMAIL
+------------------  -----------------------
+Ananya Sharma       ananya@gmail.com
+Priya Nair          priya@gmail.com
+Kavya Reddy         kavya@gmail.com
+Divya Singh         divya@gmail.com
+Meera Patel         meera@gmail.com
+
+
+SQL> SELECT * FROM CUSTOMER
+  2  WHERE CUSTOMER_ID = 1003;
+
+CUSTOMER_ID  CUSTOMER_NAME  EMAIL
+-----------  -------------  -------------------
+1003         Kavya Reddy    kavya@gmail.com
+
+
+SQL> UPDATE CUSTOMER
+  2  SET ADDRESS = 'Coimbatore'
+  3  WHERE CUSTOMER_ID = 1001;
+
+1 row updated.
+
+SQL> UPDATE CUSTOMER
+  2  SET PHONE_NUMBER = '9123456789'
+  3  WHERE CUSTOMER_ID = 1005;
+
+1 row updated.
+
+SQL> SELECT * FROM CUSTOMER;
+
+5 rows selected.
+
+
+SQL> DELETE FROM CUSTOMER
+  2  WHERE CUSTOMER_ID = 1005;
+
+1 row deleted.
+
+SQL> SELECT * FROM CUSTOMER;
+
+4 rows selected.
+
+SQL> CREATE TABLE FARMER (
+  2  Farmer_ID INT PRIMARY KEY,
+  3  Farmer_Name VARCHAR(100) NOT NULL,
+  4  Email VARCHAR(100) UNIQUE NOT NULL,
+  5  Phone_Number VARCHAR(15) NOT NULL,
+  6  Password VARCHAR(100) NOT NULL,
+  7  Address VARCHAR(255) NOT NULL
+  8  );
+
+Table created.
+
+SQL> INSERT INTO FARMER VALUES
+  2  (2001, 'Ravi Kumar', 'ravi@gmail.com', '9876500001',
+  3  'Ravi@123', 'Chennai');
+
+1 row created.
+
+SQL> INSERT INTO FARMER VALUES
+  2  (2002, 'Suresh Kumar', 'suresh@gmail.com', '9876500002',
+  3  'Suresh@123', 'Coimbatore');
+
+1 row created.
+
+SQL> INSERT INTO FARMER VALUES
+  2  (2003, 'Arun Raj', 'arun@gmail.com', '9876500003',
+  3  'Arun@123', 'Madurai');
+
+1 row created.
+
+SQL> INSERT INTO FARMER VALUES
+  2  (2004, 'Mohan Das', 'mohan@gmail.com', '9876500004',
+  3  'Mohan@123', 'Salem');
+
+1 row created.
+
+SQL> INSERT INTO FARMER VALUES
+  2  (2005, 'Kannan', 'kannan@gmail.com', '9876500005',
+  3  'Kannan@123', 'Erode');
+
+1 row created.
+
+SQL> SELECT * FROM FARMER;
+
+FARMER_ID  FARMER_NAME    EMAIL
+---------  -------------  --------------------
+2001       Ravi Kumar     ravi@gmail.com
+2002       Suresh Kumar   suresh@gmail.com
+2003       Arun Raj       arun@gmail.com
+2004       Mohan Das      mohan@gmail.com
+2005       Kannan         kannan@gmail.com
+
+
+SQL> UPDATE FARMER
+  2  SET ADDRESS = 'Tiruchirappalli'
+  3  WHERE FARMER_ID = 2001;
+
+1 row updated.
+
+SQL> DELETE FROM FARMER
+  2  WHERE FARMER_ID = 2005;
+
+1 row deleted.
+SQL> CREATE TABLE PRODUCT (
+  2  Product_ID INT PRIMARY KEY,
+  3  Farmer_ID INT,
+  4  Product_Name VARCHAR(100) NOT NULL,
+  5  Category VARCHAR(50),
+  6  Price NUMBER(10,2),
+  7  Stock INT
+  8  );
+
+Table created.
+
+SQL> INSERT INTO PRODUCT VALUES
+  2  (3001, 2001, 'Tomato', 'Vegetables', 40, 100);
+
+1 row created.
+
+SQL> INSERT INTO PRODUCT VALUES
+  2  (3002, 2002, 'Carrot', 'Vegetables', 60, 80);
+
+1 row created.
+
+SQL> INSERT INTO PRODUCT VALUES
+  2  (3003, 2003, 'Potato', 'Vegetables', 50, 120);
+
+1 row created.
+
+SQL> INSERT INTO PRODUCT VALUES
+  2  (3004, 2004, 'Mango', 'Fruits', 100, 60);
+
+1 row created.
+
+SQL> INSERT INTO PRODUCT VALUES
+  2  (3005, 2005, 'Banana', 'Fruits', 50, 150);
+
+1 row created.
+
+SQL> SELECT * FROM PRODUCT;
+
+PRODUCT_ID  FARMER_ID  PRODUCT_NAME  CATEGORY       PRICE  STOCK
+----------  ---------  ------------  -------------  -----  -----
+3001        2001       Tomato         Vegetables       40    100
+3002        2002       Carrot         Vegetables       60     80
+3003        2003       Potato         Vegetables       50    120
+3004        2004       Mango          Fruits          100     60
+3005        2005       Banana         Fruits           50    150
+
+
+SQL> UPDATE PRODUCT
+  2  SET PRICE = 45
+  3  WHERE PRODUCT_ID = 3001;
+
+1 row updated.
+
+SQL> DELETE FROM PRODUCT
+  2  WHERE PRODUCT_ID = 3005;
+
+1 row deleted.
+
+SQL> CREATE TABLE ORDERS (
+  2  Order_ID INT PRIMARY KEY,
+  3  Customer_ID INT,
+  4  Order_Date DATE,
+  5  Total_Amount NUMBER(10,2),
+  6  Order_Status VARCHAR(30)
+  7  );
+
+Table created.
+
+SQL> INSERT INTO ORDERS VALUES
+  2  (4001, 1001, TO_DATE('01-09-2026','DD-MM-YYYY'),
+  3  200, 'Confirmed');
+
+1 row created.
+
+SQL> INSERT INTO ORDERS VALUES
+  2  (4002, 1002, TO_DATE('02-09-2026','DD-MM-YYYY'),
+  3  350, 'Processing');
+
+1 row created.
+
+SQL> INSERT INTO ORDERS VALUES
+  2  (4003, 1003, TO_DATE('03-09-2026','DD-MM-YYYY'),
+  3  150, 'Delivered');
+
+1 row created.
+
+SQL> SELECT * FROM ORDERS;
+
+ORDER_ID  CUSTOMER_ID  TOTAL_AMOUNT  ORDER_STATUS
+--------  -----------  ------------  -------------
+4001      1001               200     Confirmed
+4002      1002               350     Processing
+4003      1003               150     Delivered
+
+
+SQL> UPDATE ORDERS
+  2  SET ORDER_STATUS = 'Delivered'
+  3  WHERE ORDER_ID = 4001;
+
+1 row updated.
+
+SQL> DELETE FROM ORDERS
+  2  WHERE ORDER_ID = 4003;
+
+1 row deleted.
+SQL> CREATE TABLE ORDER_ITEM (
+  2  Order_Item_ID INT PRIMARY KEY,
+  3  Order_ID INT,
+  4  Product_ID INT,
+  5  Quantity INT,
+  6  Price NUMBER(10,2)
+  7  );
+
+Table created.
+
+SQL> INSERT INTO ORDER_ITEM VALUES
+  2  (5001, 4001, 3001, 5, 200);
+
+1 row created.
+
+SQL> INSERT INTO ORDER_ITEM VALUES
+  2  (5002, 4002, 3002, 5, 300);
+
+1 row created.
+
+SQL> SELECT * FROM ORDER_ITEM;
+
+ORDER_ITEM_ID  ORDER_ID  PRODUCT_ID  QUANTITY  PRICE
+-------------  --------  ----------  --------  -----
+5001           4001      3001              5     200
+5002           4002      3002              5     300
+
+
+SQL> UPDATE ORDER_ITEM
+  2  SET QUANTITY = 6
+  3  WHERE ORDER_ITEM_ID = 5001;
+
+1 row updated.
+
+SQL> DELETE FROM ORDER_ITEM
+  2  WHERE ORDER_ITEM_ID = 5002;
+
+1 row deleted.
+SQL> CREATE TABLE PAYMENT (
+  2  Payment_ID INT PRIMARY KEY,
+  3  Order_ID INT,
+  4  Payment_Method VARCHAR(50),
+  5  Payment_Status VARCHAR(30)
+  6  );
+
+Table created.
+
+SQL> INSERT INTO PAYMENT VALUES
+  2  (6001, 4001, 'UPI', 'Paid');
+
+1 row created.
+
+SQL> INSERT INTO PAYMENT VALUES
+  2  (6002, 4002, 'Cash on Delivery', 'Pending');
+
+1 row created.
+
+SQL> SELECT * FROM PAYMENT;
+
+PAYMENT_ID  ORDER_ID  PAYMENT_METHOD       PAYMENT_STATUS
+----------  --------  -------------------  --------------
+6001        4001      UPI                  Paid
+6002        4002      Cash on Delivery     Pending
+
+
+SQL> UPDATE PAYMENT
+  2  SET PAYMENT_STATUS = 'Paid'
+  3  WHERE PAYMENT_ID = 6002;
+
+1 row updated.
+
+SQL> DELETE FROM PAYMENT
+  2  WHERE PAYMENT_ID = 6002;
+
+1 row deleted.
+SQL> CREATE TABLE SHIPMENT (
+  2  Shipment_ID INT PRIMARY KEY,
+  3  Order_ID INT,
+  4  Tracking_Number VARCHAR(50),
+  5  Delivery_Status VARCHAR(30)
+  6  );
+
+Table created.
+
+SQL> INSERT INTO SHIPMENT VALUES
+  2  (7001, 4001, 'TRK1001', 'Shipped');
+
+1 row created.
+
+SQL> INSERT INTO SHIPMENT VALUES
+  2  (7002, 4002, 'TRK1002', 'Processing');
+
+1 row created.
+
+SQL> SELECT * FROM SHIPMENT;
+
+SHIPMENT_ID  ORDER_ID  TRACKING_NUMBER  DELIVERY_STATUS
+-----------  --------  ---------------  ----------------
+7001         4001      TRK1001          Shipped
+7002         4002      TRK1002          Processing
+
+
+SQL> UPDATE SHIPMENT
+  2  SET DELIVERY_STATUS = 'Delivered'
+  3  WHERE SHIPMENT_ID = 7001;
+
+1 row updated.
+
+SQL> DELETE FROM SHIPMENT
+  2  WHERE SHIPMENT_ID = 7002;
+
+1 row deleted.
+SQL> CREATE TABLE REVIEW (
+  2  Review_ID INT PRIMARY KEY,
+  3  Customer_ID INT,
+  4  Product_ID INT,
+  5  Rating INT,
+  6  Review_Text VARCHAR(255)
+  7  );
+
+Table created.
+
+SQL> INSERT INTO REVIEW VALUES
+  2  (8001, 1001, 3001, 5, 'Very fresh tomato');
+
+1 row created.
+
+SQL> INSERT INTO REVIEW VALUES
+  2  (8002, 1002, 3002, 4, 'Good quality carrot');
+
+1 row created.
+
+SQL> SELECT * FROM REVIEW;
+
+REVIEW_ID  CUSTOMER_ID  PRODUCT_ID  RATING  REVIEW_TEXT
+---------  -----------  ----------  ------  --------------------
+8001       1001         3001           5    Very fresh tomato
+8002       1002         3002           4    Good quality carrot
+
+
+SQL> UPDATE REVIEW
+  2  SET RATING = 5
+  3  WHERE REVIEW_ID = 8002;
+
+1 row updated.
+
+SQL> DELETE FROM REVIEW
+  2  WHERE REVIEW_ID = 8002;
+
+1 row deleted.
+SQL> CREATE TABLE ADMIN (
+  2  Admin_ID INT PRIMARY KEY,
+  3  Admin_Name VARCHAR(100) NOT NULL,
+  4  Email VARCHAR(100) UNIQUE NOT NULL,
+  5  Password VARCHAR(100) NOT NULL
+  6  );
+
+Table created.
+
+SQL> INSERT INTO ADMIN VALUES
+  2  (9001, 'Admin One', 'admin1@farm2home.com', 'Admin@123');
+
+1 row created.
+
+SQL> INSERT INTO ADMIN VALUES
+  2  (9002, 'Admin Two', 'admin2@farm2home.com', 'Admin@456');
+
+1 row created.
+
+SQL> SELECT * FROM ADMIN;
+
+ADMIN_ID  ADMIN_NAME   EMAIL
+--------  -----------  -------------------------
+9001      Admin One    admin1@farm2home.com
+9002      Admin Two    admin2@farm2home.com
+
+
+SQL> UPDATE ADMIN
+  2  SET ADMIN_NAME = 'Main Admin'
+  3  WHERE ADMIN_ID = 9001;
+
+1 row updated.
+
+SQL> DELETE FROM ADMIN
+  2  WHERE ADMIN_ID = 9002;
+
+1 row deleted.
+
+SQL> SELECT * FROM ADMIN;
+
+ADMIN_ID  ADMIN_NAME   EMAIL
+--------  -----------  -------------------------
+9001      Main Admin   admin1@farm2home.com
