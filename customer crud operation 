@@ -1,0 +1,76 @@
+CREATE TABLE CUSTOMER (
+    Customer_ID INT PRIMARY KEY,
+    Customer_Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    Phone_Number VARCHAR(15) NOT NULL,
+    Password VARCHAR(100) NOT NULL,
+    Address VARCHAR(255) NOT NULL
+);
+
+INSERT INTO CUSTOMER VALUES
+(1001, 'Ananya Sharma', 'ananya@gmail.com', '9876543210', 'Ananya@123', 'Chennai');
+
+INSERT INTO CUSTOMER VALUES
+(1002, 'Priya Nair', 'priya@gmail.com', '9876543211', 'Priya@123', 'Kochi');
+
+INSERT INTO CUSTOMER VALUES
+(1003, 'Kavya Reddy', 'kavya@gmail.com', '9876543212', 'Kavya@123', 'Hyderabad');
+
+INSERT INTO CUSTOMER VALUES
+(1004, 'Divya Singh', 'divya@gmail.com', '9876543213', 'Divya@123', 'Bengaluru');
+
+INSERT INTO CUSTOMER VALUES
+(1005, 'Meera Patel', 'meera@gmail.com', '9876543214', 'Meera@123', 'Ahmedabad');
+
+INSERT INTO CUSTOMER VALUES
+(1006, 'Sneha Iyer', 'sneha@gmail.com', '9876543215', 'Sneha@123', 'Coimbatore');
+
+INSERT INTO CUSTOMER VALUES
+(1007, 'Pooja Verma', 'pooja@gmail.com', '9876543216', 'Pooja@123', 'Mumbai');
+
+INSERT INTO CUSTOMER VALUES
+(1008, 'Nisha Gupta', 'nisha@gmail.com', '9876543217', 'Nisha@123', 'Delhi');
+
+INSERT INTO CUSTOMER VALUES
+(1009, 'Aishwarya Rao', 'aishwarya@gmail.com', '9876543218', 'Aish@123', 'Mysuru');
+
+INSERT INTO CUSTOMER VALUES
+(1010, 'Harini Krishnan', 'harini@gmail.com', '9876543219', 'Harini@123', 'Madurai');
+
+SELECT * FROM CUSTOMER;
+
+SELECT CUSTOMER_NAME
+FROM CUSTOMER;
+
+SELECT CUSTOMER_NAME, EMAIL
+FROM CUSTOMER;
+
+SELECT *
+FROM CUSTOMER
+WHERE CUSTOMER_ID = 1003;
+
+SELECT CUSTOMER_NAME, EMAIL
+FROM CUSTOMER
+WHERE CUSTOMER_ID = 1003;
+
+UPDATE CUSTOMER
+SET ADDRESS = 'Coimbatore'
+WHERE CUSTOMER_ID = 1001;
+
+UPDATE CUSTOMER
+SET PHONE_NUMBER = '9123456789'
+WHERE CUSTOMER_ID = 1005;
+
+UPDATE CUSTOMER
+SET EMAIL = 'harini.krishnan@gmail.com'
+WHERE CUSTOMER_ID = 1010;
+
+SELECT * FROM CUSTOMER;
+
+DELETE FROM CUSTOMER
+WHERE CUSTOMER_ID = 1009;
+
+DELETE FROM CUSTOMER
+WHERE CUSTOMER_ID = 1010;
+
+SELECT * FROM CUSTOMER;
