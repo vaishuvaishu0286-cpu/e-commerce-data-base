@@ -1,0 +1,42 @@
+FARM2FARM – CATEGORY PRODUCT REPORT ANALYSIS
+
+1. Category Table
+The Category table stores different types of farm products.
+Each category has a unique Category_ID.
+
+2. Product Table
+The Product table stores products available in Farm2Farm.
+It contains product name, description, price, stock, farmer ID and category ID.
+
+3. Primary Key
+Category_ID is the primary key of the Category table.
+Product_ID is the primary key of the Product table.
+
+4. Foreign Key
+Category_ID in the Product table is a foreign key.
+It connects each product with its category.
+
+5. Insert Operation
+INSERT is used to add categories and products into the database.
+
+6. Select Operation
+SELECT is used to display the stored category and product details.
+
+7. Update Operation
+UPDATE is used to change the price of a product.
+
+8. Delete Operation
+DELETE is used to remove a product from the Product table.
+
+9. Join Operation
+JOIN combines Category and Product information.
+It helps us identify which category each product belongs to.
+
+10. Group By Analysis
+GROUP BY is used to count the number of products available in each category.
+
+CONCLUSION
+
+The Category_Product_Report helps Farm2Farm manage farm product
+categories and products. It also provides useful information about
+product prices, stock and category-wise product availability.
