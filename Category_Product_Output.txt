@@ -1,0 +1,14 @@
+CATEGORY_ID CATEGORY_NAME     CATEGORY_DESCRIPTION
+----------- ----------------- ------------------------------
+1           Vegetables        Fresh farm vegetables
+2           Fruits            Fresh farm fruits
+3           Grains            Fresh farm grains
+4           Pulses            Healthy farm pulses
+5           Leafy Greens      Fresh leafy vegetables
+6           Spices            Natural farm spices
+7           Dairy             Fresh dairy products
+8           Millets            Healthy millet products
+9           Herbs              Fresh farm herbs
+10          Organic            Organic farm products
+
+10 rows selected.
