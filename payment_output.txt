@@ -1,0 +1,94 @@
+SQL> CREATE TABLE PAYMENT (
+  2      PAYMENT_ID NUMBER(5) PRIMARY KEY,
+  3      ORDER_ID NUMBER(5),
+  4      PAYMENT_DATE DATE NOT NULL,
+  5      PAYMENT_MODE VARCHAR2(20) NOT NULL,
+  6      PAYMENT_AMOUNT NUMBER(10,2) NOT NULL,
+  7      PAYMENT_STATUS VARCHAR2(20) NOT NULL,
+  8      CONSTRAINT FK_PAYMENT_ORDER
+  9          FOREIGN KEY (ORDER_ID)
+ 10          REFERENCES ORDERS(ORDER_ID)
+ 11  );
+
+Table created.
+
+SQL> SELECT * FROM PAYMENT;
+
+PAYMENT_ID   ORDER_ID PAYMENT_D PAYMENT_MODE         PAYMENT_AMOUNT PAYMENT_STATUS
+---------- ---------- --------- -------------------- -------------- --------------------
+       501       1001 22-SEP-26 UPI                            1198 SUCCESS
+       502       1002 22-SEP-26 CARD                            999 SUCCESS
+       503       1003 23-SEP-26 CASH                            750 FAILED
+       504       1004 23-SEP-26 UPI                            1500 SUCCESS
+       505       1005 24-SEP-26 CARD                            850 FAILED
+
+
+SQL> SELECT * 
+  2  FROM PAYMENT
+  3  WHERE PAYMENT_STATUS = 'SUCCESS';
+
+PAYMENT_ID   ORDER_ID PAYMENT_D PAYMENT_MODE         PAYMENT_AMOUNT PAYMENT_STATUS
+---------- ---------- --------- -------------------- -------------- --------------------
+       501       1001 22-SEP-26 UPI                            1198 SUCCESS
+       502       1002 22-SEP-26 CARD                            999 SUCCESS
+       504       1004 23-SEP-26 UPI                            1500 SUCCESS
+
+
+SQL> SELECT * 
+  2  FROM PAYMENT
+  3  WHERE PAYMENT_STATUS = 'FAILED';
+
+PAYMENT_ID   ORDER_ID PAYMENT_D PAYMENT_MODE         PAYMENT_AMOUNT PAYMENT_STATUS
+---------- ---------- --------- -------------------- -------------- --------------------
+       503       1003 23-SEP-26 CASH                            750 FAILED
+       505       1005 24-SEP-26 CARD                            850 FAILED
+
+
+SQL> SELECT * FROM PAYMENT
+  2  WHERE PAYMENT_ID = 505;
+
+PAYMENT_ID   ORDER_ID PAYMENT_D PAYMENT_MODE         PAYMENT_AMOUNT PAYMENT_STATUS
+---------- ---------- --------- -------------------- -------------- --------------------
+       505       1005 24-SEP-26 CARD                            850 FAILED
+
+SQL> SELECT PAYMENT_MODE, COUNT(*) AS TOTAL_TRANSACTIONS
+  2  FROM PAYMENT
+  3  GROUP BY PAYMENT_MODE;
+
+PAYMENT_MODE         TOTAL_TRANSACTIONS
+-------------------- ------------------
+UPI                                   2
+CARD                                  2
+CASH                                  1
+
+SQL> SELECT PAYMENT_MODE,
+  2         SUM(PAYMENT_AMOUNT) AS TOTAL_AMOUNT_COLLECTED
+  3  FROM PAYMENT
+  4  WHERE PAYMENT_STATUS = 'SUCCESS'
+  5  GROUP BY PAYMENT_MODE;
+
+PAYMENT_MODE         TOTAL_AMOUNT_COLLECTED
+-------------------- ----------------------
+UPI                                    2698
+CARD                                    999
+
+SQL> SELECT 
+  2      P.PAYMENT_ID,
+  3      P.ORDER_ID,
+  4      P.PAYMENT_DATE,
+  5      P.PAYMENT_MODE,
+  6      P.PAYMENT_AMOUNT,
+  7      P.PAYMENT_STATUS,
+  8      O.ORDER_STATUS
+  9  FROM PAYMENT P
+ 10  JOIN ORDERS O
+ 11  ON P.ORDER_ID = O.ORDER_ID
+ 12  ORDER BY P.PAYMENT_ID;
+
+PAYMENT_ID   ORDER_ID PAYMENT_D PAYMENT_MODE         PAYMENT_AMOUNT PAYMENT_STATUS       ORDER_STATUS
+---------- ---------- --------- -------------------- -------------- -------------------- ------------------------------
+       501       1001 22-SEP-26 UPI                            1198 SUCCESS              Shipped
+       502       1002 22-SEP-26 CARD                            999 SUCCESS              Packed
+       503       1003 23-SEP-26 CASH                            750 FAILED               Shipped
+       504       1004 23-SEP-26 UPI                            1500 SUCCESS              Delivered
+       505       1005 24-SEP-26 CARD                            850 FAILED               Pending
